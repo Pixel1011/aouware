@@ -41,7 +41,9 @@ file(GLOB_RECURSE AOU_RESOURCES
     "${CMAKE_SOURCE_DIR}/resources/*"
 )
 
-add_executable(aouware ${AOU_SOURCES} ${AOU_HEADERS})
+set(APP_ICON_RESOURCE "resources/icon.rc")
+
+add_executable(aouware WIN32 ${AOU_SOURCES} ${AOU_HEADERS} ${APP_ICON_RESOURCE})
 
 set_property(TARGET aouware PROPERTY WIN32_EXECUTABLE true)
 

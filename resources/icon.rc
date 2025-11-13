@@ -1,0 +1,2 @@
+ // app_icon.rc
+     IDI_ICON1 ICON "aou.ico"

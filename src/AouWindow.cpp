@@ -38,7 +38,7 @@ AouWindow::AouWindow(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f)
 		QSize screenSize = screen->size();
 		int sw = screenSize.width();
 		int sh = screenSize.height();
-
+		frameRate = screen->refreshRate() + 2;
 		position = new QVector2D(static_cast<float>(rand() % (sw - this->width())), static_cast<float>(rand() % (sh - this->height())));
 	}
 	else {
@@ -89,7 +89,7 @@ bool AouWindow::Collide()
 	}
 	// hits right
 	if (x + this->width() >= sw) {
-		x = sw - this->width() - 1;
+		x = sw - this->width() - 1; // same up here for catwtf reasons
 		velocity->setX(-velocity->x());
 		hit = true;
 	}
