@@ -8,6 +8,7 @@
 #include <qmovie.h>
 #include <qlabel.h>
 #include <qnamespace.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -15,13 +16,14 @@ int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 
-	QWidget window;
-	window.resize(250, 250);
-	window.setWindowTitle("aou");
-	window.setWindowFlags(Qt::FramelessWindowHint);
-	
+	srand(static_cast<unsigned int>(time(nullptr)));
 
+	QWidget window;
+	window.resize(155, 145);
+	window.setWindowTitle("aou");
+	window.setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
 	
+	AouWindow* aouWindow = new AouWindow(&window);
 	
 	window.show();
 
@@ -30,8 +32,5 @@ int main(int argc, char* argv[])
 	//aouWindow->setStyleSheet("background-color: black;");
 
 	//aouWindow->show();
-
-	window.setStyleSheet("background-color: black;");
-
 	return app.exec();
 }

@@ -15,7 +15,7 @@ project ("aouware")
 set(QT_ROOT "D:/c++libs/Qt/6.10.0/msvc2022_64")
 set(CMAKE_PREFIX_PATH "${QT_ROOT}")
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Multimedia)
 
 # Collect sources from src/ (recursive). CONFIGURE_DEPENDS makes CMake
 # re-run when files are added/removed (requires CMake >= 3.12).
@@ -43,10 +43,12 @@ file(GLOB_RECURSE AOU_RESOURCES
 
 add_executable(aouware ${AOU_SOURCES} ${AOU_HEADERS})
 
+set_property(TARGET aouware PROPERTY WIN32_EXECUTABLE true)
+
 # C++20
 set_property(TARGET aouware PROPERTY CXX_STANDARD 20)
 
-target_link_libraries(aouware PRIVATE Qt6::Widgets)
+target_link_libraries(aouware PRIVATE Qt6::Widgets Qt6::Multimedia)
 
 # Embed resources into the executable (Qt 6) - use BASE to avoid absolute-path alias error
 if (AOU_RESOURCES)
@@ -76,5 +78,3 @@ set_target_properties(aouware PROPERTIES
     AUTOUIC ON
     AUTORCC ON
 )
-
-# TODO: Add tests and install targets if needed.
