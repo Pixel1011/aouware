@@ -14,9 +14,11 @@
 #include <qsize.h>
 #include <qurl.h>
 #include <cstdlib>
+#include <windows.h>
+
 
 AouWindow::AouWindow(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f)
-{  
+{
 	soundEffect = new QSoundEffect(this);
 	soundEffect->setSource(QUrl("qrc:/aou2.wav"));
 	soundEffect->setVolume(0.5f);
@@ -38,19 +40,36 @@ AouWindow::AouWindow(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f)
 		QSize screenSize = screen->size();
 		int sw = screenSize.width();
 		int sh = screenSize.height();
-		frameRate = screen->refreshRate() + 2;
 		position = new QVector2D(static_cast<float>(rand() % (sw - this->width())), static_cast<float>(rand() % (sh - this->height())));
+
+		frameRate = screen->refreshRate() + 2;
 	}
 	else {
 		position = new QVector2D(this->pos().x(), this->pos().y());
 	}
 	// random velocity
 	velocity = new QVector2D(static_cast<float>(rand() % 700) + 100.0f, static_cast<float>(rand() % 700) + 100.0f);
-	*velocity *= 2.0f;
+	//*velocity *= 0.5f;
 	lastFrameTime = timer.elapsed();
 	QTimer* frameTimer = new QTimer(this);
 	connect(frameTimer, &QTimer::timeout, this, &AouWindow::update);
 	frameTimer->start(1000.0 / frameRate);
+
+	this->setFocusProxy(parentWidget());
+	this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+	this->setAttribute(Qt::WA_TranslucentBackground, true);
+}
+
+void AouWindow::setVelocity(float x, float y)
+{
+	velocity->setX(x);
+	velocity->setY(y);
+}
+
+void AouWindow::setPosition(float x, float y)
+{
+	position->setX(x);
+	position->setY(y);
 }
 
 void AouWindow::update()
@@ -63,6 +82,7 @@ void AouWindow::update()
 		soundEffect->play();
 	}
 	Draw();
+	
 }
 
 bool AouWindow::Collide()
@@ -73,7 +93,7 @@ bool AouWindow::Collide()
 	QSize screenSize = screen->size();
 	int sw = screenSize.width();
 	int sh = screenSize.height();
-	
+
 	bool hit = false;
 	// 0, 0, sw, sh
 	// top, left, right, bottom

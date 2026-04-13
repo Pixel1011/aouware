@@ -45,7 +45,7 @@ set(APP_ICON_RESOURCE "resources/icon.rc")
 
 add_executable(aouware WIN32 ${AOU_SOURCES} ${AOU_HEADERS} ${APP_ICON_RESOURCE})
 
-set_property(TARGET aouware PROPERTY WIN32_EXECUTABLE true)
+#set_property(TARGET aouware PROPERTY WIN32_EXECUTABLE true)
 
 # C++20
 set_property(TARGET aouware PROPERTY CXX_STANDARD 20)

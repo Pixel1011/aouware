@@ -16,13 +16,15 @@ class AouWindow : public QLabel
 {
 public:
 	AouWindow(QWidget* parent, Qt::WindowFlags f = Qt::WindowFlags());
+	void setVelocity(float x, float y);
+	void setPosition(float x, float y);
+	void setFrameRate(int rate) { frameRate = rate; }
 private:
 	void update();
 	bool Collide();
 	void Move(float dtime);
 	void Draw();
 	static void checkSupportedFormats();
-
 	QVector2D* position;
 	QVector2D* velocity;
 
