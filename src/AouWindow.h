@@ -3,13 +3,9 @@
 #include <qmovie.h>
 #include <qelapsedtimer.h>
 #include <qtypes.h>
-#include <qmetatype.h>
 #include <qvectornd.h>
 #include <qnamespace.h>
-#include <qaudiooutput.h>
-#include <qmediaplayer.h>
 #include <qwidget.h>
-#include <qbuffer.h>
 #include <qsoundeffect.h>
 
 class AouWindow : public QLabel

@@ -14,7 +14,6 @@
 #include <qsize.h>
 #include <qurl.h>
 #include <cstdlib>
-#include <windows.h>
 
 
 AouWindow::AouWindow(QWidget* parent, Qt::WindowFlags f) : QLabel(parent, f)

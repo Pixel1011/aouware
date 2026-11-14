@@ -9,7 +9,6 @@
 #include <qnamespace.h>
 #include <cstdlib>
 #include <windows.h>
-#include <malloc.h>
 
 using namespace std;
 
